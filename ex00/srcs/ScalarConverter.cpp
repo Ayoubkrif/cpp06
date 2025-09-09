@@ -6,11 +6,15 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:39:12 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/09/08 13:47:24 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/09/09 11:14:19 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <climits>
+#include <cstddef>
+#include <cstdlib>
+#include <cstring>
 #include <iomanip>
 #include <ostream>
 
@@ -20,6 +24,52 @@ void	str_tolower(std::string &s)
 
 	for (size_t i = 0; i < size; i++)
 		s[i] = std::tolower(static_cast<unsigned char>(s[i]));
+}
+
+
+void	intConversion(std::string &str)
+{
+	size_t	size = str.size();
+	size_t	i = 0;
+	bool	minus = false;
+	int		nb = 0;
+
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			minus = true;
+		i++;
+	}
+	while (i < size && str[i] == '0')
+		i++;
+	if (i == size)
+		nb = 0;
+	else if (size - i > 9)
+	{
+		if (minus)
+			nb = INT_MIN;
+		else
+			nb = INT_MAX;
+	}
+	else if (size - i == 9)
+	{
+		if (minus)
+		{
+			if (std::strcmp("2147483648", &str.c_str()[i]) < 0)
+				nb = INT_MIN;
+			else
+				nb = std::atoi(str.c_str());
+		}
+		else
+		{
+			if (std::strcmp("2147483647", &str.c_str()[i]) < 0)
+				nb = INT_MAX;
+			else
+				nb = std::atoi(str.c_str());
+		}
+	}
+	else
+		nb = std::atoi(str.c_str());
 }
 
 void	ScalarConverter::convert(std::string &str)
