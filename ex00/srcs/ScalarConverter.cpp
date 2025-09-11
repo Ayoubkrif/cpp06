@@ -6,17 +6,12 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:39:12 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/09/09 11:14:19 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/09/10 14:01:50 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-#include <climits>
-#include <cstddef>
-#include <cstdlib>
-#include <cstring>
 #include <iomanip>
-#include <ostream>
 
 void	str_tolower(std::string &s)
 {
@@ -26,51 +21,6 @@ void	str_tolower(std::string &s)
 		s[i] = std::tolower(static_cast<unsigned char>(s[i]));
 }
 
-
-void	intConversion(std::string &str)
-{
-	size_t	size = str.size();
-	size_t	i = 0;
-	bool	minus = false;
-	int		nb = 0;
-
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			minus = true;
-		i++;
-	}
-	while (i < size && str[i] == '0')
-		i++;
-	if (i == size)
-		nb = 0;
-	else if (size - i > 9)
-	{
-		if (minus)
-			nb = INT_MIN;
-		else
-			nb = INT_MAX;
-	}
-	else if (size - i == 9)
-	{
-		if (minus)
-		{
-			if (std::strcmp("2147483648", &str.c_str()[i]) < 0)
-				nb = INT_MIN;
-			else
-				nb = std::atoi(str.c_str());
-		}
-		else
-		{
-			if (std::strcmp("2147483647", &str.c_str()[i]) < 0)
-				nb = INT_MAX;
-			else
-				nb = std::atoi(str.c_str());
-		}
-	}
-	else
-		nb = std::atoi(str.c_str());
-}
 
 void	ScalarConverter::convert(std::string &str)
 {
@@ -104,7 +54,9 @@ void	ScalarConverter::convert(std::string &str)
 	str_tolower(str);
 	if (str == "-inf" || str == "+inf" || str == "inf"
 		|| str == "+inff" || str == "-inff" || str == "inff"
-		|| str == "nan" || str == "nanf")
+		|| str == "nan" || str == "nanf"
+		|| str == "+nan" || str == "+nanf"
+		|| str == "-nan" || str == "-nanf")
 	{
 		//nanConverter;
 		std::cout << "nanConverter(str)"
@@ -163,13 +115,13 @@ void	ScalarConverter::convert(std::string &str)
 
 	if (d)
 	{
-		// doubleConversion(str);
 		std::cout << "doubleConversion(str)"
 			<< std::endl;
+		// doubleConversion(str);
 		return ;
 	}
 
-		// intConversion(str);
 		std::cout << "intConversion(str)"
 			<< std::endl;
+		intConversion(str);
 }
