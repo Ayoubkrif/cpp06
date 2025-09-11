@@ -6,7 +6,7 @@
 #    By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/14 20:52:04 by aykrifa           #+#    #+#              #
-#    Updated: 2025/09/10 14:08:00 by aykrifa          ###   ########.fr        #
+#    Updated: 2025/09/11 16:46:52 by aykrifa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC_DIRS_PATHS = $(addprefix $(SRC_PATH)/,$(SRC_DIRS))
 SOURCES		= main.cpp \
 			  charConverter.cpp \
 			  intConverter.cpp \
-			  nanConverter.cpp \
 			  floatConverter.cpp \
 			  doubleConverter.cpp \
 			  ScalarConverter.cpp \

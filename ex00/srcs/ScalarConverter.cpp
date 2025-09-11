@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:39:12 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/09/10 14:01:50 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/09/11 16:51:31 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ScalarConverter::convert(std::string &str)
 		  << std::flush;
 	if (!size)
 	{
-		// empty str;
 		std::cout << "Empty str !"
 			<< std::endl;
 		return ;
@@ -45,30 +44,35 @@ void	ScalarConverter::convert(std::string &str)
 
 	if (size == 1 && !std::isdigit(str[i]))
 	{
-		// charConversion(str);
-		std::cout << "charConversion(str)"
+		charConversion(str[1]);
+		std::cout << "char"
 			<< std::endl;
 		return ;
 	}
 
 	str_tolower(str);
-	if (str == "-inf" || str == "+inf" || str == "inf"
-		|| str == "+inff" || str == "-inff" || str == "inff"
-		|| str == "nan" || str == "nanf"
-		|| str == "+nan" || str == "+nanf"
-		|| str == "-nan" || str == "-nanf")
+
+	if (str == "-inff" || str == "+inff" || str == "inff"
+		|| str == "nanf" || str == "+nanf" || str == "-nanf")
 	{
-		//nanConverter;
-		std::cout << "nanConverter(str)"
+		std::cout << "float"
 			<< std::endl;
-		return ;
+		floatConversion(str);
+		return;
+	}
+	if (str == "-inf" || str == "+inf" || str == "inf"
+		|| str == "nan" || str == "+nan" || str == "-nan")
+	{
+		std::cout << "double"
+			<< std::endl;
+		doubleConversion(str);
+		return;
 	}
 
 	if (str[i] == '+' || str[i] == '-')
 		i++;
     if (!std::isdigit(str[i]))
 	{
-		//Need number;
 		std::cout << "Need number !"
 			<< std::endl;
 		return ;
@@ -107,21 +111,19 @@ void	ScalarConverter::convert(std::string &str)
 
 	if (f)
 	{
-		// floatConversion(str);
-		std::cout << "floatConversion(str)"
+		std::cout << "float"
 			<< std::endl;
+		floatConversion(str);
 		return ;
 	}
-
 	if (d)
 	{
-		std::cout << "doubleConversion(str)"
+		std::cout << "double"
 			<< std::endl;
-		// doubleConversion(str);
+		doubleConversion(str);
 		return ;
 	}
-
-		std::cout << "intConversion(str)"
-			<< std::endl;
-		intConversion(str);
+	std::cout << "int"
+		<< std::endl;
+	intConversion(str);
 }
