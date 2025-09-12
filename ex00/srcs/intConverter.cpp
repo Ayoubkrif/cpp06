@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 13:59:40 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/09/11 16:45:35 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/09/12 17:47:24 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ void	intConversion(std::string &str)
 	{
 		std::cout << "INT Overflow !"
 			<< std::endl;
-		return ;
 	}
 //CHAR
-	std::cout << "char: "
-		<< std::flush;
+	std::cout << "char: '"
+		<< static_cast<char>(nb) << '\'';
 	if (nb < 32 || nb > 127)
-		std::cout << "Non displayable" << std::endl;
-	else
-		std::cout << static_cast<char>(nb) << std::endl;
+		std::cout << " (Non displayable) ";
+	std::cout << std::endl;
 //INT
 	std::cout << "int: "
 		<< nb

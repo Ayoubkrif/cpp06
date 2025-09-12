@@ -6,7 +6,7 @@
 /*   By: aykrifa <aykrifa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 14:39:12 by aykrifa           #+#    #+#             */
-/*   Updated: 2025/09/11 16:51:31 by aykrifa          ###   ########.fr       */
+/*   Updated: 2025/09/11 23:16:55 by aykrifa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	ScalarConverter::convert(std::string &str)
 
 	if (size == 1 && !std::isdigit(str[i]))
 	{
-		charConversion(str[1]);
 		std::cout << "char"
 			<< std::endl;
+		charConversion(str[0]);
 		return ;
 	}
 
